@@ -1,7 +1,7 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import AppError from '../utils/AppError';
-import { CustomerCategories, ErrorCode } from '../enums';
+import { ErrorCode } from '../enums';
 import { IJwtDecodedToken } from '../interfaces';
 import configuration from 'src/libs/configuration';
 import { JwtService } from '@nestjs/jwt';

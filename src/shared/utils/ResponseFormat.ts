@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Response } from 'express';
 import { ResponseCodes } from './ResponseCodes';
-import { TransactionStatus } from '../enums';
 import { HttpStatus } from '@nestjs/common';
 
 export class ResponseFormat {
@@ -86,21 +87,11 @@ export class ResponseFormat {
 
   static sendResponse(
     res: Response,
-    resDataType,
-    data,
+    resDataType: any,
+    data: any,
     message: string,
     code: HttpStatus = HttpStatus.OK,
   ) {
-    if (data && typeof data === 'object' && 'status' in data) {
-      if (data.status === TransactionStatus.FULFILLED) {
-        code = HttpStatus.OK; //200
-      } else if (data.status === TransactionStatus.IN_PROGRESS) {
-        code = HttpStatus.ACCEPTED; //202
-      } else if (data.status === TransactionStatus.FAILED && code !== 200) {
-        code = HttpStatus.BAD_REQUEST; //400
-      }
-    }
-
     const response = {
       status: resDataType?.status ?? 'FAILED',
       code: resDataType?.code ?? '06',

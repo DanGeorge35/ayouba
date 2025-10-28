@@ -11,10 +11,6 @@ import { ErrorCode, ResponseCodes, ResponseFormat } from 'src/shared';
 import AppError from './AppError';
 import AppValidationError from './AppValidationError';
 import { SlackNotifier, extractErrorLogDetails } from './SlackNotifier';
-import {
-  IrechargeLegacyResponseFormat,
-  ResponseCodes as LegacyResponseCodes,
-} from 'src/modules/irecharge-legacy-module/shared/utils';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -50,7 +46,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         messageBody: errorDetails,
       };
 
-      slack.notifyError(slackMessage);
+      // slack.notifyError(slackMessage);
     } catch (error) {
       this.logger.error(error);
     }

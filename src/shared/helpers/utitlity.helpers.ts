@@ -147,7 +147,7 @@ export class Helpers {
       : Environment.SANDBOX;
   }
 
-  static formatErrorResponse(error) {
+  static formatErrorResponse(error: any) {
     const axiosError = error as AxiosError;
 
     const response = axiosError.response;
